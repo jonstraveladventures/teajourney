@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tea Journey - From Yunnan to the World</title>
+    <meta name="description" content="An interactive story of how tea traveled from ancient China to every corner of the globe, reshaping empires, economies, and cultures along the way.">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Our styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav class="chapter-nav" id="chapterNav">
+        <div class="nav-toggle" id="navToggle">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-list" id="navList">
+            <li><a href="#hero" data-chapter="0">Intro</a></li>
+            <li><a href="#chapter1" data-chapter="1">Origins</a></li>
+            <li><a href="#chapter2" data-chapter="2">Classic of Tea</a></li>
+            <li><a href="#chapter3" data-chapter="3">Tea Horse Road</a></li>
+            <li><a href="#chapter4" data-chapter="4">Sails of Fortune</a></li>
+            <li><a href="#chapter5" data-chapter="5">Empire's Cup</a></li>
+            <li><a href="#chapter6" data-chapter="6">The Great Theft</a></li>
+            <li><a href="#chapter7" data-chapter="7">India & Ceylon</a></li>
+            <li><a href="#chapter8" data-chapter="8">The Great Race</a></li>
+            <li><a href="#chapter9" data-chapter="9">Colonial Leaves</a></li>
+            <li><a href="#chapter10" data-chapter="10">World of Tea</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <header class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">An Interactive Journey</p>
+            <h1 class="hero-title">The Tea Journey</h1>
+            <p class="hero-tagline">How a single leaf from the mountains of Yunnan<br>reshaped empires, sparked wars, and connected the world</p>
+            <div class="scroll-indicator">
+                <span>Scroll to begin</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== CHAPTER 1 ==================== -->
+    <section class="chapter" id="chapter1" data-chapter="1">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter I</span>
+            <span class="chapter-date">~2737 BCE</span>
+            <h2 class="chapter-title">The Leaf That Changed the World</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">In the misty mountains of southwestern China, where Yunnan province meets the borders of Myanmar and Laos, a plant called <em>Camellia sinensis</em> has grown wild for millennia. This is where our story begins &mdash; at the very birthplace of tea.</p>
+                    <p>According to Chinese legend, in <strong>2737 BCE</strong>, Emperor Shennong &mdash; the "Divine Farmer" &mdash; was resting beneath a wild tea tree, boiling water as was his custom for hygiene. A gust of wind blew several leaves into his cauldron. Intrigued by the aroma and refreshed by the taste, he declared the discovery of a remarkable new drink.</p>
+                    <p>Shennong, legend says, had a transparent body and could observe the effects of herbs as he consumed them. He had tasted hundreds of poisonous plants in his search for medicines &mdash; and tea, he found, acted as a universal antidote.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="figure-card">
+                        <div class="figure-icon">&#x1F33F;</div>
+                        <h3>Emperor Shennong</h3>
+                        <p class="figure-dates">~2737 BCE</p>
+                        <p>The mythical "Divine Farmer" who legend credits with discovering tea's medicinal properties. Patron deity of agriculture and herbal medicine in Chinese tradition.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container fade-in" id="map1-container">
+                <h3 class="map-title">The Birthplace of Tea</h3>
+                <p class="map-subtitle">Camellia sinensis originated at approximately 29&deg;N, 98&deg;E &mdash; the confluence of Yunnan, Tibet, Myanmar, and Northeast India</p>
+                <div class="map" id="map1"></div>
+            </div>
+
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p>Beyond legend, archaeological evidence tells us that systematic tea cultivation began in the mountainous regions of Yunnan and Sichuan around the <strong>2nd century BCE</strong> during the Han Dynasty. Excavations at the Han Yangling Mausoleum in Xi'an revealed that tea drinking was already popular among emperors more than 2,100 years ago.</p>
+                    <p>The earliest physical evidence of tea was found in the mausoleum of Emperor Jing of Han (died 141 BCE), where tea leaves were buried alongside other treasures for the afterlife.</p>
+                    <p>For centuries, tea remained a medicinal brew &mdash; bitter, boiled, and mixed with other ingredients like onions, ginger, and salt. It would take the vision of one remarkable man to transform it into an art form.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 2 ==================== -->
+    <section class="chapter chapter-alt" id="chapter2" data-chapter="2">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter II</span>
+            <span class="chapter-date">760 CE</span>
+            <h2 class="chapter-title">The Classic of Tea</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">Lu Yu was an orphan, a runaway, a circus clown, and ultimately the man who would become the "Sage of Tea." Adopted by a Buddhist monk at the Dragon Cloud Monastery, he refused the monastic life and fled to join a travelling circus at age twelve.</p>
+                    <p>Discovered by a local governor who saw his potential, Lu Yu was given access to a library and a tutor. When the chaos of the An Lushan Rebellion (755&ndash;763 CE) engulfed China, he retreated to the serene shores of Lake Tai, where he devoted himself to the study of tea.</p>
+                    <p>Between <strong>760 and 762 CE</strong>, Lu Yu wrote the <em>Ch&aacute; J&#299;ng</em> (<em>The Classic of Tea</em>) &mdash; the world's first comprehensive treatise on tea. Divided into three volumes and ten chapters, it covered everything from the botany of the tea plant to the quality of water, from the tools of tea-making to the philosophy of the cup.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="figure-card">
+                        <div class="figure-icon">&#x1F4DC;</div>
+                        <h3>Lu Yu</h3>
+                        <p class="figure-dates">733&ndash;804 CE</p>
+                        <p>The "Sage of Tea" whose <em>Classic of Tea</em> transformed a medicinal drink into a refined art. His treatise remains the foundational text of tea culture worldwide.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container fade-in">
+                <h3 class="map-title">Tea in China: A Dynasty Timeline</h3>
+                <div class="timeline" id="dynasty-timeline">
+                    <div class="timeline-item" data-year="-2737">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>~2737 BCE</h4>
+                            <p>Legend of Emperor Shennong's discovery of tea</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-year="-59">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>59 BCE</h4>
+                            <p>First reliable written reference to tea preparation (Wang Bao's contract)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-year="220">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>220 CE</h4>
+                            <p>Hua Tuo's medical text <em>Shi Lun</em> records tea drinking</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-year="618">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>618&ndash;907 CE &bull; Tang Dynasty</h4>
+                            <p>Tea becomes widely popular across China. Compressed tea cakes are roasted, crushed to powder, and boiled in water.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight" data-year="760">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>760 CE</h4>
+                            <p>Lu Yu writes <em>The Classic of Tea</em> &mdash; the world's first monograph on tea</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-year="815">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>815 CE</h4>
+                            <p>Earliest record of tea drinking in Japan &mdash; served to Emperor Saga by a Buddhist abbot</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-year="960">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>960&ndash;1279 CE &bull; Song Dynasty</h4>
+                            <p>Whisked powdered tea (dian cha) becomes the height of refinement &mdash; the precursor to Japanese matcha</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-year="1391">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>1391 CE &bull; Ming Dynasty</h4>
+                            <p>Emperor Hongwu abolishes compressed tea cakes. Loose-leaf tea steeping begins &mdash; the method we use today</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-block fade-in">
+                <div class="story-text wide">
+                    <p>Lu Yu's masterwork elevated tea from a crude boiled drink to a sophisticated cultural practice. He insisted that the quality of water mattered as much as the leaf &mdash; mountain spring water was best, river water acceptable, and well water worst of all.</p>
+                    <p>During the Tang Dynasty, tea became a <strong>national obsession</strong>. Tea taxes became a significant source of government revenue. The drink spread from southern China northward and, critically, along trade routes to neighbouring lands. The stage was set for tea's first great journey beyond China's borders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 3 ==================== -->
+    <section class="chapter" id="chapter3" data-chapter="3">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter III</span>
+            <span class="chapter-date">7th&ndash;19th Century</span>
+            <h2 class="chapter-title">The Tea Horse Road</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">High in the mountains of southwestern China, an ancient network of caravan paths wound through some of the most treacherous terrain on Earth. This was the <strong>Ch&aacute; M&#462; G&#468; D&agrave;o</strong> &mdash; the Tea Horse Road &mdash; and for over a thousand years, it was the lifeline connecting the tea gardens of Yunnan to the high plateau of Tibet.</p>
+                    <p>China had something Tibet desperately wanted: <strong>tea</strong>. In the high-altitude, meat-heavy Tibetan diet, tea provided essential nutrients and aided digestion. Tibet had something China needed in return: <strong>horses</strong> &mdash; sturdy mountain breeds vital for the empire's cavalry.</p>
+                    <p>The trade route stretched approximately <strong>2,250 kilometres</strong>, crossing mountain passes above 4,000 metres where the air thinned and the paths were too narrow and rugged for carts. Only pack animals and human porters could make the journey, carrying compressed bricks of tea on their backs through rain, snow, and bandit-infested wilderness.</p>
+                </div>
+            </div>
+
+            <div class="map-container fade-in" id="map3-container">
+                <h3 class="map-title">The Tea Horse Road & East Asian Spread</h3>
+                <p class="map-subtitle">From Pu'er through Dali, Lijiang, and Shangri-La to Lhasa &mdash; and eastward to Japan and Korea</p>
+                <div class="map" id="map3"></div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-line" style="background:#C8872B"></span> Yunnan&ndash;Tibet Route</div>
+                    <div class="legend-item"><span class="legend-line" style="background:#8B2500"></span> Sichuan&ndash;Tibet Route</div>
+                    <div class="legend-item"><span class="legend-line" style="background:#4A7C59"></span> Spread to Japan & Korea</div>
+                </div>
+            </div>
+
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <h3>The Two Great Routes</h3>
+                    <div class="route-cards">
+                        <div class="route-card">
+                            <h4>Yunnan&ndash;Tibet Route</h4>
+                            <p class="route-path">Pu'er &rarr; Dali &rarr; Lijiang &rarr; Shangri-La &rarr; Deqin &rarr; Markam &rarr; Chamdo &rarr; <strong>Lhasa</strong></p>
+                            <p>Formed in the late 6th century, this route started in the tea gardens of Xishuangbanna and climbed through UNESCO World Heritage towns before crossing into Tibet past the sacred peak of Khawa Karpo (6,740m).</p>
+                        </div>
+                        <div class="route-card">
+                            <h4>Sichuan&ndash;Tibet Route</h4>
+                            <p class="route-path">Ya'an &rarr; Luding &rarr; Kangding &rarr; Litang &rarr; Batang &rarr; Chamdo &rarr; <strong>Lhasa</strong></p>
+                            <p>Over 4,000 kilometres long with 1,300 years of history, this route carried Sichuan's tea westward. The two routes converged at Chamdo before the final stretch to Lhasa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <h3>Tea Crosses the Sea to Japan</h3>
+                    <p>While tea was travelling overland to Tibet, it was also making a pivotal sea crossing. In <strong>1191</strong>, the Zen Buddhist monk <strong>Eisai</strong> returned from China carrying tea seeds and a deep understanding of tea's role in meditation. He planted seeds on Kyushu island and at temples near Kyoto, and in 1211 wrote <em>Kissa Y&#333;j&#333;ki</em> ("Drink Tea and Prolong Life") &mdash; Japan's first treatise on tea.</p>
+                    <p>Eisai had brought from Song Dynasty China the art of whisked powdered tea &mdash; the very style that would evolve into Japan's iconic <strong>matcha</strong> and the deeply philosophical <strong>chanoyu</strong> tea ceremony, perfected centuries later by Sen no Riky&#363;.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="figure-card">
+                        <div class="figure-icon">&#x2638;</div>
+                        <h3>Eisai</h3>
+                        <p class="figure-dates">1141&ndash;1215 CE</p>
+                        <p>Rinzai Zen Buddhist monk who brought tea seeds from China to Japan in 1191 and wrote Japan's first book on tea. Father of Japanese tea culture.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 4 ==================== -->
+    <section class="chapter chapter-alt" id="chapter4" data-chapter="4">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter IV</span>
+            <span class="chapter-date">1600s</span>
+            <h2 class="chapter-title">Sails of Fortune</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">For four thousand years, tea had been an exclusively Asian affair. That changed in the early 17th century, when European ships began arriving in the ports of China and Japan, and a small, dried leaf began its conquest of the Western world.</p>
+                    <p>The <strong>Portuguese</strong> were first. Through their trading post at <strong>Macau</strong> (established 1557), they encountered tea and brought knowledge of it back to Lisbon. But it was the <strong>Dutch East India Company (VOC)</strong> that made tea a European commodity, shipping the first commercial consignment from China to <strong>Amsterdam</strong> around <strong>1610</strong>.</p>
+                    <p>Tea arrived as a luxury &mdash; exotic, expensive, and sold in apothecary shops as a medicine. But its transformation into a cultural phenomenon required a queen.</p>
+                </div>
+            </div>
+
+            <div class="map-container fade-in" id="map4-container">
+                <h3 class="map-title">Maritime Tea Routes to Europe</h3>
+                <p class="map-subtitle">Portuguese, Dutch, and British shipping routes from Canton and Macau to European ports</p>
+                <div class="map" id="map4"></div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-line" style="background:#1a5276"></span> Portuguese Route (via Macau)</div>
+                    <div class="legend-item"><span class="legend-line" style="background:#e67e22"></span> Dutch VOC Route</div>
+                    <div class="legend-item"><span class="legend-line" style="background:#C8872B"></span> British EIC Route</div>
+                </div>
+            </div>
+
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p>In <strong>1662</strong>, the Portuguese princess <strong>Catherine of Braganza</strong> married King Charles II of England. She arrived with a chest of tea among her personal belongings &mdash; and with it, a habit that would transform British culture forever.</p>
+                    <p>Catherine made tea fashionable at court. The English aristocracy, eager to emulate royal tastes, embraced the drink with enthusiasm. Within decades, what had been an exotic curiosity sold in apothecaries became the defining beverage of an empire.</p>
+                    <p>By the early 1700s, Britain's thirst for tea was insatiable &mdash; and nearly all of it came from a single source: <strong>China</strong>. This dependence on a single supplier would have extraordinary consequences.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="figure-card">
+                        <div class="figure-icon">&#x1F451;</div>
+                        <h3>Catherine of Braganza</h3>
+                        <p class="figure-dates">1638&ndash;1705</p>
+                        <p>Portuguese princess who married Charles II of England in 1662. She brought tea to the English court and made it fashionable among the aristocracy, transforming British culture.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 5 ==================== -->
+    <section class="chapter" id="chapter5" data-chapter="5">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter V</span>
+            <span class="chapter-date">1700s&ndash;1800s</span>
+            <h2 class="chapter-title">Empire's Cup</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">By the 18th century, tea had become Britain's national drink &mdash; and its national obsession. Tea taxes brought in an estimated <strong>10% of the British government's total revenue</strong>. The East India Company held a monopoly on the China tea trade, shipping millions of pounds of tea from Canton to London each year.</p>
+                    <p>But there was a problem. China wanted almost nothing that Britain produced. The trade was almost entirely one-way: silver flowed east, tea flowed west. The trade deficit was staggering and unsustainable.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid fade-in">
+                <div class="stat-card">
+                    <div class="stat-number">10%</div>
+                    <div class="stat-label">of British tax revenue came from tea</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">342</div>
+                    <div class="stat-label">chests of tea dumped in Boston Harbor, 1773</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1662</div>
+                    <div class="stat-label">year Catherine of Braganza brought tea to the English court</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&pound;7/ton</div>
+                    <div class="stat-label">premium freight rate for first-pick tea in the 1860s</div>
+                </div>
+            </div>
+
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <h3>The Boston Tea Party (1773)</h3>
+                    <p>Across the Atlantic, Britain's tea policies ignited revolution. The <strong>Tea Act of 1773</strong> granted the East India Company a monopoly on tea sales in the American colonies, reinforcing "taxation without representation." On <strong>December 16, 1773</strong>, American colonists disguised as Mohawk Indians boarded three ships at Griffin's Wharf in Boston and dumped <strong>342 chests of tea</strong> into the harbour.</p>
+                    <p>The Boston Tea Party was the spark that lit the American Revolution. Tea &mdash; a simple drink &mdash; had reshaped the political map of the world.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="figure-card">
+                        <div class="figure-icon">&#x2693;</div>
+                        <h3>Anna, Duchess of Bedford</h3>
+                        <p class="figure-dates">1783&ndash;1857</p>
+                        <p>Credited with inventing "afternoon tea" around 1840 to bridge the long gap between lunch and dinner. She began inviting friends for tea and cakes at 4pm &mdash; a tradition that became a British institution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 6 ==================== -->
+    <section class="chapter chapter-alt" id="chapter6" data-chapter="6">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter VI</span>
+            <span class="chapter-date">1839&ndash;1860</span>
+            <h2 class="chapter-title">The Opium Wars & The Great Theft</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">Britain's solution to the China trade deficit was as cynical as it was devastating. The East India Company began growing <strong>opium</strong> in Bengal and smuggling it into China, creating millions of addicts and reversing the flow of silver. When the Qing Emperor tried to stop the trade, Britain responded with gunships.</p>
+                    <p>The <strong>First Opium War (1839&ndash;1842)</strong> ended with China's humiliation and the Treaty of Nanking, which ceded Hong Kong to Britain and opened five "treaty ports" to foreign trade. The <strong>Second Opium War (1856&ndash;1860)</strong> forced further concessions. Tea had driven Britain to wage war on the world's most populous nation.</p>
+                    <p>But even military victory couldn't solve Britain's fundamental vulnerability: China still controlled the world's supply of tea. One man was sent to change that.</p>
+                </div>
+            </div>
+
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <h3>Robert Fortune: The Greatest Theft in Botanical History</h3>
+                    <p>In <strong>1848</strong>, the East India Company recruited <strong>Robert Fortune</strong>, a Scottish botanist, for a mission of extraordinary audacity. His task: penetrate China's forbidden interior, steal tea plants and seeds, and &mdash; crucially &mdash; learn the secret manufacturing processes that China had guarded for millennia.</p>
+                    <p>Fortune disguised himself as a Chinese merchant, shaving his head and donning traditional robes. With the help of a local guide, he travelled deep into the tea-growing regions of Fujian and the Wuyi Mountains &mdash; areas where foreigners faced death if discovered.</p>
+                    <p>He succeeded spectacularly. Fortune smuggled out <strong>20,000 tea plants and seedlings</strong> in specially designed Wardian cases, along with <strong>eight Chinese tea experts</strong> who agreed to travel to India. Perhaps most importantly, he discovered a trade secret that stunned the British: <strong>green tea and black tea came from the same plant</strong>. The difference was entirely in the processing.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="figure-card">
+                        <div class="figure-icon">&#x1F575;</div>
+                        <h3>Robert Fortune</h3>
+                        <p class="figure-dates">1812&ndash;1880</p>
+                        <p>Scottish botanist who disguised himself as a Chinese merchant to steal tea plants, seeds, and manufacturing secrets from China. His espionage mission broke China's monopoly on tea forever.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container fade-in" id="map6-container">
+                <h3 class="map-title">Robert Fortune's Journey & The Theft of Tea</h3>
+                <p class="map-subtitle">From Shanghai into the forbidden Wuyi Mountains, then shipping plants to the Himalayan foothills of India</p>
+                <div class="map" id="map6"></div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-line" style="background:#8B2500"></span> Fortune's Secret Journey</div>
+                    <div class="legend-item"><span class="legend-line" style="background:#4A7C59"></span> Tea Plants Shipped to India</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 7 ==================== -->
+    <section class="chapter" id="chapter7" data-chapter="7">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter VII</span>
+            <span class="chapter-date">1830s&ndash;1900s</span>
+            <h2 class="chapter-title">The Jewel's New Crop</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">Even before Fortune's mission, the British had discovered that tea was already growing wild in India. In <strong>1823</strong>, Major Robert Bruce found native tea plants in the jungles of <strong>Assam</strong> in northeastern India &mdash; a variety of <em>Camellia sinensis</em> var. <em>assamica</em> with larger, bolder leaves than its Chinese cousin.</p>
+                    <p>The first Assam tea was shipped to London in 1838 and auctioned to great excitement. By the 1860s, vast plantations spread across the Brahmaputra valley. Further west, in the foothills of the Himalayas, the <strong>Darjeeling</strong> region was planted with Chinese varieties brought by Fortune and others, creating what would become known as the "Champagne of teas."</p>
+                </div>
+            </div>
+
+            <div class="map-container fade-in" id="map7-container">
+                <h3 class="map-title">Tea Takes Root: India & Ceylon</h3>
+                <p class="map-subtitle">The major tea-growing regions established under British colonial rule</p>
+                <div class="map" id="map7"></div>
+            </div>
+
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <h3>James Taylor & the Birth of Ceylon Tea</h3>
+                    <p>Meanwhile, on the island of Ceylon (Sri Lanka), a young Scottish planter named <strong>James Taylor</strong> arrived in 1852 at the age of 17. Ceylon was then a coffee colony, but Taylor saw potential in tea. After visiting India in 1866 to learn tea-growing techniques, he planted a <strong>19-acre experimental plot</strong> at Loolecondera Estate in 1867.</p>
+                    <p>His timing was extraordinary. In <strong>1869</strong>, a devastating fungal blight (<em>Hemileia vastatrix</em>) struck Ceylon's coffee plantations, wiping out the entire industry. Plantation owners, desperate for an alternative crop, turned to Taylor's proven tea. Within decades, Ceylon became one of the world's leading tea producers.</p>
+                    <p><strong>Thomas Lipton</strong>, the son of poor Glasgow immigrants, saw the opportunity. He bought bankrupt coffee estates in Ceylon at rock-bottom prices, vertically integrated from plantation to shop, and slashed prices with his famous slogan: <em>"Direct from the tea garden to the teapot."</em> Lipton made tea affordable for the working class and built a global brand that endures today.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="figure-card">
+                        <div class="figure-icon">&#x1F331;</div>
+                        <h3>James Taylor</h3>
+                        <p class="figure-dates">1835&ndash;1892</p>
+                        <p>Scottish planter who pioneered tea cultivation in Ceylon. His 19-acre experiment at Loolecondera Estate in 1867 became the foundation of Sri Lanka's entire tea industry.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container fade-in">
+                <h3 class="map-title">Breaking China's Monopoly</h3>
+                <p class="map-subtitle">Tea production shifted dramatically as India and Ceylon rose to challenge China</p>
+                <canvas id="productionChart" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 8 ==================== -->
+    <section class="chapter chapter-alt" id="chapter8" data-chapter="8">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter VIII</span>
+            <span class="chapter-date">1866</span>
+            <h2 class="chapter-title">The Great Tea Race</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">In the age of sail, the first ship to dock in London with the new season's tea commanded a handsome premium. This fuelled one of the most thrilling sporting events of the 19th century: the annual <strong>clipper ship tea races</strong> from China to England.</p>
+                    <p>The most famous was the <strong>Great Tea Race of 1866</strong>. Five clipper ships &mdash; <em>Ariel</em>, <em>Taeping</em>, <em>Serica</em>, <em>Fiery Cross</em>, and <em>Taitsing</em> &mdash; loaded their cargoes of first-pick tea at <strong>Foochow (Fuzhou)</strong> in late May and raced 16,000 miles to London.</p>
+                    <p>For <strong>99 days</strong>, they sailed through the South China Sea, across the Indian Ocean, around the Cape of Good Hope, and up the Atlantic. When they reached the English Channel, <em>Ariel</em> and <em>Taeping</em> were virtually side by side &mdash; after three months and 16,000 miles of ocean, they were separated by just <strong>28 minutes</strong>.</p>
+                    <p><em>Taeping</em> docked first at the East India Docks, but <em>Ariel</em> arrived at a closer dock minutes later. They agreed to split the &pound;100 premium. <em>Serica</em> arrived the same tide, just hours behind. It remains one of the closest finishes in the history of ocean racing.</p>
+                </div>
+            </div>
+
+            <div class="map-container fade-in" id="map8-container">
+                <h3 class="map-title">The Great Tea Race of 1866</h3>
+                <p class="map-subtitle">16,000 miles from Foochow to London &mdash; 99 days, decided by 28 minutes</p>
+                <div class="map" id="map8"></div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-line" style="background:#C8872B"></span> Clipper Ship Route: Foochow to London</div>
+                </div>
+            </div>
+
+            <div class="race-stats fade-in">
+                <div class="race-card">
+                    <h4>Ariel</h4>
+                    <p class="race-captain">Captain John Keay</p>
+                    <p class="race-time">99 days</p>
+                    <p>First to sight the finish &mdash; docked 28 min after Taeping due to further dock</p>
+                </div>
+                <div class="race-card">
+                    <h4>Taeping</h4>
+                    <p class="race-captain">Captain Donald MacKinnon</p>
+                    <p class="race-time">99 days</p>
+                    <p>First to dock &mdash; split the &pound;100 premium with Ariel</p>
+                </div>
+                <div class="race-card">
+                    <h4>Serica</h4>
+                    <p class="race-captain">Captain George Innes</p>
+                    <p class="race-time">99 days</p>
+                    <p>Arrived the same tide, just hours behind</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 9 ==================== -->
+    <section class="chapter" id="chapter9" data-chapter="9">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter IX</span>
+            <span class="chapter-date">1878&ndash;1960s</span>
+            <h2 class="chapter-title">Colonial Leaves</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text">
+                    <p class="drop-cap">With the techniques of tea cultivation now in British hands, the leaf spread across the colonial world. From the highlands of East Africa to the plantations of South America, from the Dutch East Indies to the French colonies of Southeast Asia &mdash; tea followed empire.</p>
+                </div>
+            </div>
+
+            <div class="map-container fade-in" id="map9-container">
+                <h3 class="map-title">The Global Spread of Tea Cultivation</h3>
+                <p class="map-subtitle">Who learned from whom &mdash; tracing the knowledge transfer of tea-making across continents</p>
+                <div class="map" id="map9"></div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-line" style="background:#C8872B"></span> From China</div>
+                    <div class="legend-item"><span class="legend-line" style="background:#4A7C59"></span> From India/Ceylon (British)</div>
+                    <div class="legend-item"><span class="legend-line" style="background:#1a5276"></span> From Dutch/French colonies</div>
+                </div>
+            </div>
+
+            <div class="spread-grid fade-in">
+                <div class="spread-card" data-region="africa">
+                    <h3>Africa</h3>
+                    <div class="spread-item">
+                        <h4>Malawi <span class="spread-year">1878</span></h4>
+                        <p>First African country to grow tea. British planters brought seeds from Royal Botanical Gardens at Kew and from India. Planted near Blantyre.</p>
+                        <p class="spread-source">Learned from: <strong>British India &amp; Kew Gardens</strong></p>
+                    </div>
+                    <div class="spread-item">
+                        <h4>Kenya <span class="spread-year">1903</span></h4>
+                        <p>Tea seedlings introduced by British settlers at Limuru. Commercial cultivation began in 1924 when Brooke Bond established estates at Kericho. African growers were banned until 1956.</p>
+                        <p class="spread-source">Learned from: <strong>British India &amp; Ceylon</strong></p>
+                    </div>
+                    <div class="spread-item">
+                        <h4>Tanzania <span class="spread-year">1920</span></h4>
+                        <p>Tea planting began under German and then British colonial administration, using stock from India and Ceylon.</p>
+                        <p class="spread-source">Learned from: <strong>British India</strong></p>
+                    </div>
+                    <div class="spread-item">
+                        <h4>Rwanda <span class="spread-year">1950s</span></h4>
+                        <p>Introduced by Belgian colonists, drawing on knowledge from the Congo (1940s) and Burundi (1930s) plantings.</p>
+                        <p class="spread-source">Learned from: <strong>Belgian Congo / British East Africa</strong></p>
+                    </div>
+                </div>
+
+                <div class="spread-card" data-region="south-america">
+                    <h3>South America</h3>
+                    <div class="spread-item">
+                        <h4>Brazil <span class="spread-year">~1812</span></h4>
+                        <p>Emperor Dom Jo&atilde;o VI brought <strong>500 Chinese tea farmers</strong> from Macau to establish plantations in Rio de Janeiro state. Production peaked in the 1930s; today concentrated near S&atilde;o Paulo.</p>
+                        <p class="spread-source">Learned from: <strong>China (via Portuguese Macau)</strong></p>
+                    </div>
+                    <div class="spread-item">
+                        <h4>Argentina <span class="spread-year">1920s</span></h4>
+                        <p>First varieties introduced from Russia in 1920. From 1924, the government imported and distributed Chinese seeds. Immigrant settlers from Poland, Russia, Japan, and other nations brought seeds from India, Sri Lanka, China, and Japan to Misiones province.</p>
+                        <p class="spread-source">Learned from: <strong>Russia, China, Japan, India</strong></p>
+                    </div>
+                </div>
+
+                <div class="spread-card" data-region="asia">
+                    <h3>Southeast Asia &amp; Middle East</h3>
+                    <div class="spread-item">
+                        <h4>Indonesia <span class="spread-year">1684 / 1820s</span></h4>
+                        <p>German botanist Andreas Cleyer brought seeds from Japan in 1684. The Dutch made tea part of their Cultivation System in 1828. Assam varieties from India thrived in Java's tropical soil.</p>
+                        <p class="spread-source">Learned from: <strong>Japan, China, India (via Dutch)</strong></p>
+                    </div>
+                    <div class="spread-item">
+                        <h4>Vietnam <span class="spread-year">1880</span></h4>
+                        <p>Though wild tea trees existed for millennia, commercial production began when French colonists established the first plantation near Phu Tho, northwest of Hanoi.</p>
+                        <p class="spread-source">Learned from: <strong>Indigenous knowledge + French colonial enterprise</strong></p>
+                    </div>
+                    <div class="spread-item">
+                        <h4>Turkey <span class="spread-year">1878 / 1924</span></h4>
+                        <p>First grown in Artvin in the 1870s. After WWI, when coffee from Yemen became unavailable, Hulusi Karadeniz and botanist Ali Riza Erten promoted tea cultivation in Rize, modelled on nearby Georgian methods.</p>
+                        <p class="spread-source">Learned from: <strong>Georgia / Russia (neighbouring Batumi)</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Knowledge Transfer Diagram -->
+            <div class="knowledge-tree fade-in">
+                <h3 class="map-title">Who Taught Whom: The Tea Knowledge Tree</h3>
+                <div class="tree-container" id="knowledgeTree">
+                    <svg id="treeSvg" viewBox="0 0 1000 500"></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHAPTER 10 ==================== -->
+    <section class="chapter chapter-alt" id="chapter10" data-chapter="10">
+        <div class="chapter-header">
+            <span class="chapter-number">Chapter X</span>
+            <span class="chapter-date">Today</span>
+            <h2 class="chapter-title">A World of Tea</h2>
+        </div>
+
+        <div class="chapter-content">
+            <div class="story-block fade-in">
+                <div class="story-text wide">
+                    <p class="drop-cap">Today, tea is the most consumed beverage on Earth after water. Over <strong>7 billion cups</strong> are drunk every day. From a single plant in the mountains of Yunnan, <em>Camellia sinensis</em> now grows in more than 60 countries across every inhabited continent.</p>
+                    <p>Global production exceeded <strong>7 million metric tonnes</strong> in 2024, with China alone producing over half. The map below tells the modern story &mdash; hover over each country to explore its production, tea types, and the historical connection to the ancient gardens of China.</p>
+                </div>
+            </div>
+
+            <div class="map-container fade-in" id="map10-container">
+                <h3 class="map-title">Global Tea Production</h3>
+                <p class="map-subtitle">Colour intensity shows annual production volume. Click any country for details.</p>
+                <div class="map large-map" id="map10"></div>
+                <div class="map-legend choropleth-legend">
+                    <span class="legend-label">Production (tonnes/year):</span>
+                    <div class="legend-scale">
+                        <div class="legend-step" style="background:#f0f7e8">< 10K</div>
+                        <div class="legend-step" style="background:#c6e2a8">10K&ndash;50K</div>
+                        <div class="legend-step" style="background:#8cc269">50K&ndash;100K</div>
+                        <div class="legend-step" style="background:#5a9e3f">100K&ndash;500K</div>
+                        <div class="legend-step" style="background:#2d7a1e">500K&ndash;1M</div>
+                        <div class="legend-step" style="background:#1a5e0f">1M&ndash;3M</div>
+                        <div class="legend-step" style="background:#0d3b07">3M+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container fade-in">
+                <h3 class="map-title">Top 15 Tea-Producing Countries</h3>
+                <p class="map-subtitle">Annual production in thousands of metric tonnes (2024 estimates)</p>
+                <canvas id="barChart" width="900" height="500"></canvas>
+            </div>
+
+            <div class="tea-types-section fade-in">
+                <h3 class="map-title">The Six Types of Tea</h3>
+                <p class="map-subtitle">All from the same plant &mdash; <em>Camellia sinensis</em> &mdash; the difference is in the processing</p>
+                <div class="tea-types-grid">
+                    <div class="tea-type-card" style="border-top: 4px solid #f5f0e0">
+                        <h4>White Tea</h4>
+                        <p class="tea-process">Minimal processing &mdash; young buds, simply dried</p>
+                        <p class="tea-origin">Fujian, China; also Sri Lanka, India, Kenya</p>
+                        <p class="tea-oxidation">Oxidation: ~5&ndash;10%</p>
+                    </div>
+                    <div class="tea-type-card" style="border-top: 4px solid #7db944">
+                        <h4>Green Tea</h4>
+                        <p class="tea-process">Heated quickly to prevent oxidation &mdash; pan-fired or steamed</p>
+                        <p class="tea-origin">China (55% of production), Japan, Vietnam, Korea</p>
+                        <p class="tea-oxidation">Oxidation: 0&ndash;5%</p>
+                    </div>
+                    <div class="tea-type-card" style="border-top: 4px solid #d4c35c">
+                        <h4>Yellow Tea</h4>
+                        <p class="tea-process">Like green but with a "sealed yellowing" step &mdash; rare and prized</p>
+                        <p class="tea-origin">Exclusively China (Hunan, Sichuan, Anhui)</p>
+                        <p class="tea-oxidation">Oxidation: ~5&ndash;15%</p>
+                    </div>
+                    <div class="tea-type-card" style="border-top: 4px solid #b8860b">
+                        <h4>Oolong Tea</h4>
+                        <p class="tea-process">Partially oxidised &mdash; between green and black, repeatedly rolled</p>
+                        <p class="tea-origin">Fujian &amp; Guangdong (China), Taiwan</p>
+                        <p class="tea-oxidation">Oxidation: 15&ndash;85%</p>
+                    </div>
+                    <div class="tea-type-card" style="border-top: 4px solid #8B2500">
+                        <h4>Black Tea</h4>
+                        <p class="tea-process">Fully oxidised &mdash; withered, rolled, oxidised, dried</p>
+                        <p class="tea-origin">India, Sri Lanka, Kenya, China, Turkey, Indonesia</p>
+                        <p class="tea-oxidation">Oxidation: 85&ndash;100%</p>
+                    </div>
+                    <div class="tea-type-card" style="border-top: 4px solid #4a3728">
+                        <h4>Dark / Pu-erh Tea</h4>
+                        <p class="tea-process">Microbially fermented and aged &mdash; improves over decades</p>
+                        <p class="tea-origin">Yunnan, China (exclusively for pu-erh)</p>
+                        <p class="tea-oxidation">Post-fermented</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tea Ceremonies Around the World -->
+            <div class="ceremonies-section fade-in">
+                <h3 class="map-title">Tea Ceremonies Around the World</h3>
+                <div class="ceremonies-grid">
+                    <div class="ceremony-card">
+                        <h4>Chinese Gongfu</h4>
+                        <p>An art of precision: small clay teapots, quick steeps, and up to a dozen infusions from the same leaves. The emphasis is on the tea itself &mdash; its flavour changing with each pour.</p>
+                    </div>
+                    <div class="ceremony-card">
+                        <h4>Japanese Chanoyu</h4>
+                        <p>Rooted in Zen Buddhism, the Japanese tea ceremony transforms making matcha into a meditation on harmony (<em>wa</em>), respect (<em>kei</em>), purity (<em>sei</em>), and tranquility (<em>jaku</em>).</p>
+                    </div>
+                    <div class="ceremony-card">
+                        <h4>British Afternoon Tea</h4>
+                        <p>Invented by the Duchess of Bedford around 1840. Fine china, finger sandwiches, scones with clotted cream, and a strong black tea with milk &mdash; an institution of social elegance.</p>
+                    </div>
+                    <div class="ceremony-card">
+                        <h4>Moroccan Mint Tea</h4>
+                        <p>Chinese gunpowder green tea brewed with fresh spearmint and generous sugar. Poured from a height to create a froth, it is served three times: the first glass gentle as life, the second strong as love, the third bitter as death.</p>
+                    </div>
+                    <div class="ceremony-card">
+                        <h4>Turkish &Ccedil;ay</h4>
+                        <p>Brewed in a double-stacked teapot (<em>&ccedil;aydanl&#305;k</em>), served in tulip-shaped glasses with sugar cubes. Turks drink more tea per capita than any nation &mdash; over 3 kg per person per year.</p>
+                    </div>
+                    <div class="ceremony-card">
+                        <h4>Indian Chai</h4>
+                        <p>Black tea boiled with milk, sugar, and a masala of cardamom, ginger, cinnamon, and cloves. Sold by <em>chai wallahs</em> on every street corner &mdash; democratic, aromatic, and essential to daily life.</p>
+                    </div>
+                    <div class="ceremony-card">
+                        <h4>Russian Samovar</h4>
+                        <p>A strong tea concentrate (<em>zavarka</em>) is brewed in a small pot atop a charcoal-heated samovar, then diluted with hot water to taste. Served with jam, lemon, or sugar cubes held between the teeth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-quote">"Tea is the elixir of life." &mdash; Eisai, <em>Kissa Yojoki</em>, 1211</p>
+            <p class="footer-text">The Tea Journey &mdash; an interactive exploration of how a single leaf connected the world.</p>
+            <p class="footer-credits">Research sources include Wikipedia, Smithsonian Magazine, National Geographic, the FAO, and academic publications on tea history.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/maps.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
