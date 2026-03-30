@@ -771,11 +771,26 @@ a:hover { color: var(--tea-red); }
     margin: 3rem 0;
 }
 
+.ceremony-region-header {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--tea-brown);
+    margin-top: 2.5rem;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(200, 135, 43, 0.2);
+}
+
+.ceremony-region-header:first-of-type {
+    margin-top: 1.5rem;
+}
+
 .ceremonies-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.25rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .ceremony-card {
@@ -791,6 +806,15 @@ a:hover { color: var(--tea-red); }
     font-size: 1.1rem;
     color: var(--tea-dark);
     margin-bottom: 0.5rem;
+}
+
+.ceremony-card h4 .ceremony-origin {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--tea-amber);
+    margin-top: 0.15rem;
 }
 
 .ceremony-card p {

@@ -65,32 +65,43 @@ document.addEventListener('DOMContentLoaded', function () {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.05,
+        rootMargin: '0px 0px 0px 0px',
+    });
 
-                // Check if this fade-in contains a map
+    fadeElements.forEach(el => fadeObserver.observe(el));
+
+    /* ---- Separate observer for maps, charts, and SVGs ---- */
+    /* Uses a generous rootMargin to pre-initialize before scrolling into view */
+    const interactiveElements = document.querySelectorAll('.map-container, .chart-container, .knowledge-tree');
+
+    const interactiveObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
                 const mapEl = entry.target.querySelector('.map');
                 if (mapEl && mapEl.id) {
                     initMapIfVisible(mapEl.id);
                 }
-
-                // Check if it contains a chart
                 const canvas = entry.target.querySelector('canvas');
                 if (canvas && canvas.id) {
                     initChartIfVisible(canvas.id);
                 }
-
-                // Check for SVG (knowledge tree)
                 const svg = entry.target.querySelector('#treeSvg');
                 if (svg) {
                     initChartIfVisible('treeSvg');
                 }
+                interactiveObserver.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.01,
+        rootMargin: '200px 0px 200px 0px',
     });
 
-    fadeElements.forEach(el => fadeObserver.observe(el));
+    interactiveElements.forEach(el => interactiveObserver.observe(el));
 
     /* ---- Timeline items animation ---- */
     const timelineItems = document.querySelectorAll('.timeline-item');
@@ -125,6 +136,29 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initial state
     updateProgress();
     updateActiveNav();
+
+    /* ---- Fallback: ensure maps/charts init on first significant scroll ---- */
+    let mapsInitialized = false;
+    function initAllMapsAndCharts() {
+        if (mapsInitialized) return;
+        mapsInitialized = true;
+        Object.keys(MAP_INITIALIZERS).forEach(function(k) {
+            MAP_INITIALIZERS[k]();
+            setTimeout(function() { if (MAPS[k]) MAPS[k].invalidateSize(); }, 400);
+        });
+        Object.keys(CHART_INITIALIZERS).forEach(function(k) {
+            CHART_INITIALIZERS[k]();
+        });
+    }
+    // Init all maps once user scrolls past the hero
+    window.addEventListener('scroll', function onFirstScroll() {
+        if (window.scrollY > 200) {
+            initAllMapsAndCharts();
+            window.removeEventListener('scroll', onFirstScroll);
+        }
+    });
+    // Safety net: init everything after 3 seconds regardless
+    setTimeout(initAllMapsAndCharts, 3000);
 
     /* ---- Smooth scroll for anchor links ---- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

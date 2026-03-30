@@ -6,15 +6,12 @@ const MAPS = {};
 const TILE_URL = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
 const TILE_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>';
 
-const VINTAGE_TILE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}';
-const VINTAGE_ATTR = 'Tiles &copy; Esri';
-
-const STAMEN_TILE = 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png';
-const STAMEN_ATTR = '&copy; <a href="https://stadiamaps.com/">Stadia</a>';
+const TERRAIN_TILE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
+const TERRAIN_ATTR = 'Tiles &copy; Esri &mdash; Sources: Esri, DeLorme, USGS, NPS';
 
 function createMap(containerId, center, zoom, opts = {}) {
-    const tileUrl = opts.vintage ? STAMEN_TILE : TILE_URL;
-    const tileAttr = opts.vintage ? STAMEN_ATTR : TILE_ATTR;
+    const tileUrl = opts.vintage ? TERRAIN_TILE : TILE_URL;
+    const tileAttr = opts.vintage ? TERRAIN_ATTR : TILE_ATTR;
 
     const map = L.map(containerId, {
         center: center,
